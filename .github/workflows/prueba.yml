@@ -1,0 +1,15 @@
+name: Comprobar Token
+on: [push]
+
+jobs:
+  verificar:
+    runs-on: self-hosted
+    steps:
+      - name: Comparar tokens
+        run: |
+          if [ "${{ secrets.DEV_TOKEN }}" = "$LOCAL_DEV_TOKEN" ]; then
+            echo "¡Los tokens coinciden!"
+          else
+            echo "Error: Los tokens no coinciden"
+            exit 1
+          fi
